@@ -1,0 +1,387 @@
+<script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
+  <link rel="stylesheet" type="text/css" href="../css/paginaPrincipal.css">
+
+<!-- page -->
+<title>
+    Inicio
+</title>
+<main class="min-h-screen w-full bg-gray-100 text-gray-700" x-data="layout">
+    <!-- header page -->
+    <header class="flex w-full items-center justify-between border-b-2 border-gray-200 bg-white p-2">
+        <!-- logo -->
+        <div class="flex items-center space-x-2">
+            <button type="button" class="text-3xl" @click="asideOpen = !asideOpen"><i class="bx bx-menu"></i></button>
+            <div>Menu</div>
+        </div>
+
+        <!-- button profile -->
+        <div>
+            <div class="imagenPerfil">
+                         <button type="button" @click="profileOpen = !profileOpen" @click.outside="profileOpen = false"
+                class="h-9 w-9 overflow-hidden rounded-full">
+                <img src="../imagenes/perfil.png" alt="plchldr.co" />
+            </button>   
+            </div>
+
+
+            <!-- dropdown profile -->
+            <div class="absolute right-2 mt-1 w-48 divide-y divide-gray-200 rounded-md border border-gray-200 bg-white shadow-md"
+                x-show="profileOpen" x-transition>
+                <div class="flex items-center space-x-2 p-2">
+                    <img src="https://plchldr.co/i/40x40?bg=111111" alt="plchldr.co" class="h-9 w-9 rounded-full" />
+                    <div class="font-medium" id="usernameDisplay">No has iniciado sesión uwu</div>
+                </div>
+
+                <div class="flex flex-col space-y-3 p-2">
+                    <a href="#" class="transition hover:text-blue-600">Mi Perfil</a>
+                    <a href="#" class="transition hover:text-blue-600">Editar Perfil</a>
+                    <a href="#" class="transition hover:text-blue-600">Configuración</a>
+                </div>
+
+        <div class="p-2">
+           <a href="../index.html" class="flex items-center space-x-2 transition hover:text-blue-600">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+        </svg>
+        <div>Salir</div>
+          </a>
+        </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- aside -->
+<aside class="flex w-72 flex-col space-y-2 border-r-2 border-gray-200 bg-white p-2" style="height: 90.5vh"
+            x-show="asideOpen">
+            <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
+                <span class="text-2xl"><i class="bx bx-home"></i></span>
+                <span>Inicio</span>
+            </a>
+
+            <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
+                <span class="text-2xl">
+                   <img src="../imagenes/graficas.png" width="24" height="25" alt="Gráficos" />
+                </span>
+
+                <span>Graficas</span>
+            </a>
+
+            <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
+                <span class="text-2xl">
+                   <img src="../imagenes/agregar.png" width="24" height="25" alt="Anadir" />
+                </span>
+                <span>Añadir AC</span>
+            </a>
+            
+                        <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
+                   <span class="text-2xl">
+                   <img src="../imagenes/eliminar.png" width="24" height="25" alt="Eliminar" />
+                </span>
+                <span>Borrar AC</span>
+            </a>
+
+
+            <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
+                <span class="text-2xl"><i class="bx bx-user"></i></span>
+                <span>Perfil</span>
+            </a>
+        </aside>
+
+        <!-- main content page -->
+
+
+ <div class="card">
+        <div class="card-content">
+  <div class="pantalla2">
+  
+
+        
+<div class="ubicacion">
+    <h2>Ubicación</h2>
+    </div>
+    
+      <p id="lugar" ></p>  
+    
+    
+
+     <div class="est">
+       <h2>Estado</h2> 
+    </div>
+<div class="botones">
+
+    
+    <div class="cuadros">
+                    <div class="btnOff">
+                <button id="apagarBtn" class="botonControl" onclick="apagar()">Apagar</button>
+            </div>
+        <div class="btnOn">
+            <button id="encenderBtn" class="botonControl" onclick="encender()">Encender</button>
+        </div>
+
+  
+    </div>
+
+</div>
+
+
+  <br><br><br>
+
+  <div class="temperatura">
+    <h2>Temperatura</h2>
+    </div>
+<p id="temperaturaValor" ></p>
+  
+
+
+<!--
+<div class="modo"> 
+    <h2>Modo</h2>
+</div>
+-->
+
+
+    
+  <div class="mod">
+    <label for="modoSwitch">Automático</label>
+    </div>
+    
+    <input type="checkbox" id="modoSwitch" onchange="cambiarModo()" checked>
+    
+  
+
+  <div class="botonesTemp">
+    <button id="subirBtn" class="botonControl" onclick="modificarTemperatura('subir')">Subir</button>
+    <button id="bajarBtn" class="botonControl" onclick="modificarTemperatura('bajar')">Bajar</button>
+  </div>
+          </div>
+
+  <br><br><br>
+
+  <script>
+    function encender() {
+      fetch('../php/actualizar_estado.php?estado=1')
+        .then(function(response) {
+          if (response.ok) {
+            document.getElementById('encenderBtn').disabled = true;
+            document.getElementById('apagarBtn').disabled = false;
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+
+      // Guardar estado del botón "Encender" en localStorage
+      localStorage.setItem('estadoEncender', true);
+      localStorage.setItem('estadoApagar', false);
+    }
+
+    function apagar() {
+      fetch('../php/actualizar_estado.php?estado=0')
+        .then(function(response) {
+          if (response.ok) {
+            document.getElementById('encenderBtn').disabled = false;
+            document.getElementById('apagarBtn').disabled = true;
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+
+      // Guardar estado del botón "Apagar" en localStorage
+      localStorage.setItem('estadoEncender', false);
+      localStorage.setItem('estadoApagar', true);
+    }
+
+    function obtenerTemperatura() {
+      fetch('../php/obtener_temperatura.php')
+        .then(function(response) {
+          if (response.ok) {
+            return response.text();
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        })
+        .then(function(data) {
+           document.getElementById('temperaturaValor').textContent = data + "°C";
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+    }
+    
+    function obtenerUbicacion() {
+      fetch('../php/obtener_ubicacion.php')
+        .then(function(response) {
+          if (response.ok) {
+            return response.text();
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        })
+        .then(function(data) {
+           document.getElementById('lugar').textContent = data ;
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+    }
+
+    function cambiarModo() {
+      var modoSwitch = document.getElementById('modoSwitch');
+      var subirBtn = document.getElementById('subirBtn');
+      var bajarBtn = document.getElementById('bajarBtn');
+
+      if (modoSwitch.checked) {
+        subirBtn.disabled = true;
+        bajarBtn.disabled = true;
+      } else {
+        subirBtn.disabled = false;
+        bajarBtn.disabled = false;
+      }
+
+      // Guardar estado del checkbox en localStorage
+      localStorage.setItem('modo', modoSwitch.checked);
+    }
+
+    function modificarTemperatura(accion) {
+      var modoSwitch = document.getElementById('modoSwitch');
+      if (!modoSwitch.checked) {
+        fetch('../php/modificar_temperatura.php?accion=' + accion)
+          .then(function(response) {
+            if (response.ok) {
+              obtenerTemperatura();
+            } else {
+              console.error('Error:', response.statusText);
+            }
+          })
+          .catch(function(error) {
+            console.error('Error:', error);
+          });
+      }
+    }
+
+    // Obtener estado del checkbox desde localStorage
+    var modoGuardado = localStorage.getItem('modo');
+    var modoSwitch = document.getElementById('modoSwitch');
+    if (modoGuardado === 'true') {
+      modoSwitch.checked = true;
+    } else {
+      modoSwitch.checked = false;
+    }
+    cambiarModo();
+
+    // Obtener temperatura al cargar la página
+    obtenerTemperatura();
+    obtenerUbicacion();
+    
+
+    // Obtener estado de los botones "Encender" y "Apagar" desde localStorage
+    var estadoEncender = localStorage.getItem('estadoEncender');
+    var estadoApagar = localStorage.getItem('estadoApagar');
+    if (estadoEncender === 'true') {
+      document.getElementById('encenderBtn').disabled = true;
+      document.getElementById('apagarBtn').disabled = false;
+    } else if (estadoApagar === 'true') {
+      document.getElementById('encenderBtn').disabled = false;
+      document.getElementById('apagarBtn').disabled = true;
+    }
+  
+        function toggleMenu() {
+      var menuLista = document.getElementById("menuLista");
+      if (menuLista.style.display === "block") {
+        menuLista.style.display = "none";
+      } else {
+        menuLista.style.display = "block";
+      }
+    }
+    
+    
+    
+    
+    document.addEventListener('DOMContentLoaded', function() {
+  obtenerEstadoYActualizarBotones();
+});
+
+function obtenerEstadoYActualizarBotones() {
+  fetch('../php/obtener_estado.php')
+    .then(function(response) {
+      if (response.ok) {
+        return response.text();
+      } else {
+        console.error('Error:', response.statusText);
+      }
+    })
+    .then(function(data) {
+      var estado = parseInt(data);
+      var encenderBtn = document.getElementById('encenderBtn');
+      var apagarBtn = document.getElementById('apagarBtn');
+
+      if (estado === 1) {
+        encenderBtn.disabled = true;
+        apagarBtn.disabled = false;
+      } else {
+        encenderBtn.disabled = false;
+        apagarBtn.disabled = true;
+      }
+    })
+    .catch(function(error) {
+      console.error('Error:', error);
+    });
+}
+
+    
+    
+    </script>
+
+  
+   </div>
+   
+   
+
+
+
+  </div>
+<!--
+cierra card
+-->
+
+    
+
+
+
+
+    </div>
+<!--
+cierra flex
+-->
+</main>
+
+<script>
+    document.addEventListener("alpine:init", () => {
+        Alpine.data("layout", () => ({
+            profileOpen: false,
+            asideOpen: true,
+        }));
+    });
+    
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var username = getCookie('username');
+        if (username) {
+            var usernameDisplay = document.getElementById('usernameDisplay');
+            usernameDisplay.textContent = username;
+        }
+    });
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+</script>
