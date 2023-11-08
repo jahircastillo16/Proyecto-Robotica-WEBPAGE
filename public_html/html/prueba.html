@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Imagen</title>
+</head>
+<body>
+    <h1>Imagen de perfil:</h1>
+    <div id="imagen-perfil"></div>
+
+    <script>
+        // Obtener el valor de la cookie 'imagen'
+        var imagenCookie = getCookie('imagen');
+        
+        // Mostrar el nombre de la imagen en la página
+        document.getElementById('imagen-perfil').innerText = imagenCookie;
+
+        // Función para obtener el valor de una cookie por nombre
+        function getCookie(name) {
+            var cookieArr = document.cookie.split(';');
+            for (var i = 0; i < cookieArr.length; i++) {
+                var cookiePair = cookieArr[i].split('=');
+                if (name == cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+    </script>
+</body>
+</html>
